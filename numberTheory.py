@@ -24,11 +24,11 @@ def quad_possibleoutcomes(input):
 
 def multiplymodulo(multiply, modulo):
 	ans = []
-	remainder = multiply % modulo
+	start = 1 
+	remainder =( start * multiply )% modulo
 	ans.append(remainder)
 	while remainder != 1:
-		multiply = multiply ** 2
-		remainder = multiply % modulo 
+		remainder =( remainder * multiply )% modulo
 		ans.append(remainder)
 	print(ans)
 	print(len(ans))
