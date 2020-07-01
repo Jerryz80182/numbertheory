@@ -7,10 +7,10 @@ def generate(n, mod):
     cycles = []
     for x in range(1, mod):
         if x not in generated:
-            cycles.append[[x]]
-            next = (n * x) % mod
-            while next not in cycles[-1]:
-                cycles[-1].append(next)
-                generated.append(next)
-                next = (cycles[-1][-1] * n) % mod
+            cycles.append([x])
+            new = (n * x) % mod
+            while new not in cycles[-1]:
+                cycles[-1].append(new)
+                generated.append(new)
+                new = (cycles[-1][-1] * n) % mod
     return cycles
