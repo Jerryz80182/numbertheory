@@ -1,3 +1,15 @@
+def generate(n, mod):
+    if not ((type(n) == type(int())) and (type(mod) == type(int()))):
+        raise TypeError
+    if not ((n > 0) and (mod > n)):
+        raise ValueError
+    generated = [1]
+    new = n
+    while new not in generated:
+        generated.append(new)
+        new = (generated[-1] * n) % mod
+    return generated
+
 def find_cycles(n, mod):
     if not ((type(n) == type(int())) and (type(mod) == type(int()))):
         raise TypeError
@@ -14,14 +26,3 @@ def find_cycles(n, mod):
                 generated.append(new)
                 new = (cycles[-1][-1] * n) % mod
     return cycles
-def generate(n, mod):
-    if not ((type(n) == type(int())) and (type(mod) == type(int()))):
-        raise TypeError
-    if not ((n > 0) and (mod > n)):
-        raise ValueError
-    generated = [1]
-    new = n
-    while new not in generated:
-        generated.append(new)
-        new = (generated[-1] * n) % mod
-    return generated
