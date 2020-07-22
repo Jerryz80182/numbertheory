@@ -1,4 +1,4 @@
-#print out all 1 to (input - 1) square mod input  
+#compute all qudratic residue of the input  
 def quad(input):
 	l = []
 	for i in range(1,input):
