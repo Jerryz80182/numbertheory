@@ -1,8 +1,17 @@
+#----------------------------------------------
+#
+# author: Jonathan Oliveros
+#
+#----------------------------------------------
+
 import math
 
 class DecimalToBinary:
 
     def __init__(self):
+        """
+        Init of DecimalToBinary.
+        """
         pass
 
     def convert_db(self, decimal):
@@ -20,6 +29,13 @@ class DecimalToBinary:
 class successiveSquares:
 
     def __init__(self, base, exp, m):
+        """Init of SuccessiveSquares.
+        params:
+
+        base: the base of the number
+        exp: the exponent of the number in question
+        m: the number we are modding by
+        """
         self.base = base
         self.exp = exp
         self.m = m
@@ -27,8 +43,12 @@ class successiveSquares:
 
     def get_mod(self):
         """
-        Uses the successive squares algorithm to reduce very large numbers
-        mod m. 
+        Uses the successive squares algorithm to reduce very large integers
+        mod m.
+
+        returns:
+
+        reduced number mod m
         """
         binary = DecimalToBinary()
         bin_num = binary.convert_db(self.exp)
@@ -38,12 +58,12 @@ class successiveSquares:
             num_lst.append((self.base**(2**(i)) % self.m))
         num_lst.reverse() # reverse list to match up with binary number
         for j in range(0, len(bin_num)):
-            if bin_num[j] == 1:
+            if bin_num[j] == 1: #the 1's and 0's are flags to see if the index in num_lst can be multiplied to result 
                 result *= num_lst[j]
         return result % self.m # the result is easier to reduce mod m and is congruent to original number
         
 
-print('Given that a,e,m are intigers then we can solve:')
+print('Given that a,e,m are integers then we can solve:')
 print('a**e mod m')
 a = int(input('Please enter a positive integer for a: '))
 if a < 0:
