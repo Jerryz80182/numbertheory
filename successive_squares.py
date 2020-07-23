@@ -5,6 +5,7 @@
 #----------------------------------------------
 
 import math
+import time
 
 class DecimalToBinary:
 
@@ -52,10 +53,11 @@ class successiveSquares:
         """
         binary = DecimalToBinary()
         bin_num = binary.convert_db(self.exp)
-        num_lst = [] # create a list that holds (base**(2**binary digit)) mod m 
+        num_lst = [] # create a list that holds (base**(2**i)) mod m 
         result = 1
-        for i in range(0,len(bin_num)):
-            num_lst.append((self.base**(2**(i)) % self.m))
+        num_lst.append(self.base)# add base number to list since 2**0 == 1
+        for i in range(1,len(bin_num)): # start i at 1 to get rest of the list.
+            num_lst.append((num_lst[i - 1]**2 % self.m)) # square the result of the previous number on list and mod m
         num_lst.reverse() # reverse list to match up with binary number
         for j in range(0, len(bin_num)):
             if bin_num[j] == 1: #the 1's and 0's are flags to see if the index in num_lst can be multiplied to result 
@@ -81,4 +83,12 @@ if m < 0:
 if not type(m) is int:
     raise TypeError("This is not an integer.")
 ssq = successiveSquares(a, e, m)
+start_algo = time.perf_counter_ns()
 print('Your result is: ' + str(ssq.get_mod()))
+end_algo = time.perf_counter_ns()
+start_naive = time.perf_counter_ns()
+(a**e % m)
+end_naive = time.perf_counter_ns()
+print('Using the successive squares algorithm it takes ' + str(end_algo - start_algo)
+      + ' nanoseconds. Using the naive way it takes '
+      + str(end_naive - start_naive) + ' nanoseconds.')
